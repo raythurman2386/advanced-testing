@@ -6,10 +6,13 @@ import Dashboard from './dashboard/Dashboard';
 afterEach(rtl.cleanup);
 
 describe('Dashboard Suite', () => {
-  it('renders without crashing', () => {
+  it('Snapshot Test', () => {
     // ready to test!
     const wrapper = rtl.render(<Dashboard />);
-
+    expect(wrapper.asFragment()).toMatchSnapshot();
+  });
+  it('tests the button', () => {
+    const wrapper = rtl.render(<Dashboard />);
     wrapper.debug();
   });
 });
