@@ -3,9 +3,8 @@ describe('Full functionality test', () => {
     cy.visit('http://localhost:3000/');
     // Make sure defaults to Unlocked and Open
     // check for green leds first
-    cy.contains('Unlocked');
-    cy.contains('Open');
-    cy.get('.green-led');
+    cy.contains('Unlocked').get('.green-led');
+    cy.contains('Open').get('.green-led');
 
     // Make sure lock is initially disabled
     cy.contains('Lock').should('be', 'disabled');
@@ -17,12 +16,19 @@ describe('Full functionality test', () => {
       // checks to see if the led changed
       .get('.red-led');
 
+    // Check for Unlocked and Open
+    cy.contains('Closed').get('.red-led');
+    cy.contains('Unlocked').get('.green-led');
+
     // Tests the lock button
     cy.contains('Lock')
       .click()
       .should('have.text', 'Unlock Gate')
       // checks the led
       .get('.red-led');
+
+    cy.contains('Locked').get('.red-led');
+    cy.contains('Closed').get('.red-led');
 
     // Check to see if open is disabled
     cy.contains('Open').should('be', 'disabled');
