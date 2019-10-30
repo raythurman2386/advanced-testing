@@ -1,9 +1,13 @@
-describe('First Cypress test', () => {
+describe('Full functionality test', () => {
   it('Find and click the buttons', () => {
     cy.visit('http://localhost:3000/');
-
+    // Make sure defaults to Unlocked and Open
     // check for green leds first
+    cy.contains('Unlocked');
+    cy.contains('Open');
     cy.get('.green-led');
+
+    // Make sure lock is initially disabled
     cy.contains('Lock').should('be', 'disabled');
 
     // Tests the close button
