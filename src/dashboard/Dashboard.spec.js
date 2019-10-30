@@ -11,4 +11,15 @@ describe('Dashboard Suite', () => {
     const wrapper = rtl.render(<Dashboard />);
     expect(wrapper.asFragment()).toMatchSnapshot();
   });
+  it('Closes the door', async () => {
+    const wrapper = rtl.render(<Dashboard />);
+    await wrapper.findByText(/open/i);
+
+    const close = wrapper.getByText(/close/i);
+    rtl.act(() => {
+      rtl.fireEvent.click(close);
+    });
+
+    expect(wrapper.queryByText(/close/i)).not.toBe(/open/i);
+  });
 });
