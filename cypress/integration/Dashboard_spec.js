@@ -15,16 +15,19 @@ describe('First Cypress test', () => {
     // Tests the lock button
     cy.contains('Lock')
       .click()
+      .should('have.text', 'Unlock Gate')
       // checks the led
       .get('.red-led');
 
     // Unlock and go back to green
     cy.contains('Unlock')
       .click()
+      .should('have.text', 'Lock Gate')
       .get('.green-led');
 
     cy.contains('Open')
       .click()
-      .should('have.text', 'Close Gate');
+      .should('have.text', 'Close Gate')
+      .get('.green-led');
   });
 });
