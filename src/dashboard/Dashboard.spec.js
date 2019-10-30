@@ -22,4 +22,15 @@ describe('Dashboard Suite', () => {
 
     expect(wrapper.queryByText(/close/i)).not.toBe(/open/i);
   });
+  it('Locks the door', async () => {
+    const wrapper = rtl.render(<Dashboard />);
+    await wrapper.findByText(/unlocked/i);
+
+    const lock = wrapper.getByText(/lock gate/i);
+    rtl.act(() => {
+      rtl.fireEvent.click(lock);
+    });
+
+    expect(wrapper.getByText(/unlock/i)).not.toBe(/locked/i);
+  });
 });
