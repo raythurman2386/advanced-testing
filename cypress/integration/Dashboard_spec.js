@@ -4,6 +4,7 @@ describe('First Cypress test', () => {
 
     // check for green leds first
     cy.get('.green-led');
+    cy.contains('Lock').should('be', 'disabled');
 
     // Tests the close button
     cy.contains('Close')
@@ -29,5 +30,8 @@ describe('First Cypress test', () => {
       .click()
       .should('have.text', 'Close Gate')
       .get('.green-led');
+
+    // make sure the button is disabled
+    cy.contains('Lock').should('be', 'disabled');
   });
 });
