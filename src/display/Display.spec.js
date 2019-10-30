@@ -11,4 +11,9 @@ describe('Display Suite', () => {
     const wrapper = rtl.render(<Display />);
     expect(wrapper.asFragment()).toMatchSnapshot();
   });
+  it('Should be unlocked', () => {
+    const wrapper = rtl.render(<Display />);
+    const unlocked = wrapper.getByText(/unlocked/i);
+    expect(unlocked).toBeVisible();
+  });
 });
