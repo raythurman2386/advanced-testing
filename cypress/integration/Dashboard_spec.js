@@ -20,6 +20,9 @@ describe('First Cypress test', () => {
       // checks the led
       .get('.red-led');
 
+    // Check to see if open is disabled
+    cy.contains('Open').should('be', 'disabled');
+
     // Unlock and go back to green
     cy.contains('Unlock')
       .click()
