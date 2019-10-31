@@ -3,8 +3,12 @@ describe('Full functionality test', () => {
     cy.visit('http://localhost:3000/');
     // Make sure defaults to Unlocked and Open
     // check for green leds first
-    cy.contains(/unlocked/i).get('.green-led');
-    cy.contains(/open/i).get('.green-led');
+    cy.contains(/unlocked/i)
+      .get('.green-led')
+      .should('have.class', 'green-led');
+    cy.contains(/open/i)
+      .get('.green-led')
+      .should('have.class', 'green-led');
 
     // Make sure lock is initially disabled
     cy.contains(/lock gate/i).should('have.prop', 'disabled');
