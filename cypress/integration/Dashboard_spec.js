@@ -19,16 +19,24 @@ describe('Full functionality test', () => {
       .should('have.text', 'Open Gate');
 
     // Check for Unlocked and Open
-    cy.contains(/closed/i).get('.red-led');
-    cy.contains(/unlocked/i).get('.green-led');
+    cy.contains(/closed/i)
+      .get('.red-led')
+      .should('have.class', 'red-led');
+    cy.contains(/unlocked/i)
+      .get('.green-led')
+      .should('have.class', 'green-led');
 
     // Tests the lock button
     cy.contains('Lock')
       .click()
       .should('have.text', 'Unlock Gate');
 
-    cy.contains('Locked').get('.red-led');
-    cy.contains('Closed').get('.red-led');
+    cy.contains('Locked')
+      .get('.red-led')
+      .should('have.class', 'red-led');
+    cy.contains('Closed')
+      .get('.red-led')
+      .should('have.class', 'red-led');
 
     // Check to see if open is disabled
     cy.contains('Open').should('have.prop', 'disabled');
